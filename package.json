@@ -1,5 +1,5 @@
 {
-  "name": "express-template",
+  "name": "inventory-application",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ScaxCodes/express-template.git"
+    "url": "git+https://github.com/ScaxCodes/inventory-application.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/ScaxCodes/express-template/issues"
+    "url": "https://github.com/ScaxCodes/inventory-application/issues"
   },
-  "homepage": "https://github.com/ScaxCodes/express-template#readme",
+  "homepage": "https://github.com/ScaxCodes/inventory-application#readme",
   "description": "",
   "dependencies": {
     "ejs": "^3.1.10",
