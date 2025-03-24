@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const itemController = require("../controllers/itemController");
+const categoryController = require("../controllers/categoryController");
 
 const viewRouter = Router();
 
-viewRouter.get("/", itemController.getAllItems);
+viewRouter.get("/", categoryController.getAllCategories);
 
 viewRouter.get("/evidence", (req, res) => {
   res.render("evidence");

@@ -1,6 +1,6 @@
 const pool = require("./pool");
 
-const SQL = /* sql */ `
+const SQL_ITEMS = /* sql */ `
     SELECT 
       items.id,
       items.name,
@@ -14,11 +14,24 @@ const SQL = /* sql */ `
     LEFT JOIN manufacturers ON items.manufacturer_id = manufacturers.id;
 `;
 
+const SQL_CATEGORIES = /* sql */ `
+    SELECT
+      id,
+      name
+    FROM categories;
+`;
+
 async function getItems() {
-  const { rows } = await pool.query(SQL);
+  const { rows } = await pool.query(SQL_ITEMS);
+  return rows;
+}
+
+async function getCategories() {
+  const { rows } = await pool.query(SQL_CATEGORIES);
   return rows;
 }
 
 module.exports = {
   getItems,
+  getCategories,
 };
