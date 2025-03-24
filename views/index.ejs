@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crime Scene Essentials</title>
+
+    <!-- Google Material Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -20,15 +27,33 @@
 
       p {
         color: #666;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
       }
 
-      .categories {
+      .container {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 15px;
         padding: 20px;
+      }
+
+      .add-btn {
+        background: #28a745;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .add-btn:hover {
+        background: #218838;
       }
 
       .category-banner {
@@ -39,15 +64,47 @@
         color: #fff;
         text-transform: uppercase;
         font-weight: bold;
-        text-align: center;
+        text-align: left;
         border-radius: 10px;
         cursor: pointer;
         transition: transform 0.2s, background 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
       }
 
       .category-banner:hover {
         background: #444;
         transform: scale(1.05);
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: white;
+        transition: color 0.2s;
+        display: flex;
+        align-items: center;
+      }
+
+      .btn .material-icons {
+        font-size: 24px;
+      }
+
+      .edit-btn:hover {
+        color: #ffc107;
+      }
+
+      .delete-btn:hover {
+        color: #dc3545;
       }
     </style>
   </head>
@@ -55,10 +112,24 @@
     <h1>Crime Scene Essentials</h1>
     <p><strong>INVENTORY MANAGEMENT APP</strong></p>
 
-    <div class="categories">
+    <div class="container">
+      <button class="add-btn">
+        <span class="material-icons">add</span> Add Category
+      </button>
+
       <% if (categories && categories.length > 0) { %> <%
       categories.forEach(category => { %>
-      <div class="category-banner"><%= category.name %></div>
+      <div class="category-banner">
+        <span><%= category.name %></span>
+        <div class="btn-group">
+          <button class="btn edit-btn" title="Edit Category">
+            <span class="material-icons">edit</span>
+          </button>
+          <button class="btn delete-btn" title="Delete Category">
+            <span class="material-icons">delete</span>
+          </button>
+        </div>
+      </div>
       <% }); %> <% } else { %>
       <p>No categories available.</p>
       <% } %>
