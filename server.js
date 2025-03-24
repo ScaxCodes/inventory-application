@@ -4,6 +4,8 @@ const viewRouter = require("./routes/viewRouter");
 
 const PORT = process.env.PORT || 8000;
 
+server.use(express.static("public"));
+
 const path = require("node:path");
 server.set("views", path.join(__dirname, "views"));
 server.set("view engine", "ejs");
