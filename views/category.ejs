@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crime Scene Essentials - <%= categoryName %></title>
+    <!-- Google Material Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>Crime Scene Essentials</h1>
+    <p><strong>INVENTORY MANAGEMENT APP</strong></p>
+
+    <!-- Selected Category Banner -->
+    <div class="selected-category-banner">
+      <h2><%= categoryName %></h2>
+    </div>
+    <!-- Container for Item Cards -->
+    <div class="category-page">
+      <div class="items-container">
+        <% if (items && items.length > 0) { %> <% items.forEach(item => { %>
+        <div class="item-card">
+          <h3><%= item.name %></h3>
+          <p><strong>Amount:</strong> <%= item.amount %></p>
+          <p><strong>Manufacturer:</strong> <%= item.manufacturer_name %></p>
+          <p><strong>Price:</strong> $<%= item.price %></p>
+          <p><strong>Orderability:</strong> <%= item.orderablity %></p>
+          <div class="card-actions">
+            <button class="btn edit-btn" title="Edit Item">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="btn delete-btn" title="Delete Item">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </div>
+        <% }); %> <% } else { %>
+        <p>No items available in this category.</p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

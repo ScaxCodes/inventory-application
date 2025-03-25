@@ -6,25 +6,25 @@ const viewRouter = Router();
 
 viewRouter.get("/", categoryController.getAllCategories);
 
-viewRouter.get("/evidence", (req, res) => {
-  res.render("evidence");
-});
+viewRouter.get("/all-items", itemController.getAllItems);
 
-viewRouter.get("/gear", (req, res) => {
-  res.render("gear");
-});
+viewRouter.get("/evidence", itemController.getCategoryItems);
 
-viewRouter.get("/break-time", (req, res) => {
-  res.render("break-time");
-});
+// viewRouter.get("/gear", (req, res) => {
+//   res.render("gear");
+// });
 
-viewRouter.get("/miscellaneous", (req, res) => {
-  res.render("miscellaneous");
-});
+// viewRouter.get("/break-time", (req, res) => {
+//   res.render("break-time");
+// });
 
-viewRouter.get("/:category/item/:id", (req, res) => {
-  const { category, id } = req.params;
-  res.render("item");
-});
+// viewRouter.get("/miscellaneous", (req, res) => {
+//   res.render("miscellaneous");
+// });
+
+// viewRouter.get("/:category/item/:id", (req, res) => {
+//   const { category, id } = req.params;
+//   res.render("item");
+// });
 
 module.exports = viewRouter;

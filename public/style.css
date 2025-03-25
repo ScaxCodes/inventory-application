@@ -16,6 +16,7 @@ p {
   margin-bottom: 20px;
 }
 
+/* Index view */
 .container {
   display: flex;
   flex-direction: column;
@@ -81,8 +82,69 @@ p {
   align-items: center;
 }
 
+.category-page .btn {
+  color: #333;
+}
+
 .btn .material-icons {
   font-size: 24px;
+}
+
+.edit-btn:hover {
+  color: #ffc107;
+}
+
+.delete-btn:hover {
+  color: #dc3545;
+}
+
+/* Category view */
+.selected-category-banner {
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.item-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.item-card h3 {
+  margin-top: 0;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: color 0.2s;
 }
 
 .edit-btn:hover {
