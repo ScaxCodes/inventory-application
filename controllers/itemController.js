@@ -7,15 +7,15 @@ async function getAllItems(req, res) {
 }
 
 async function getCategoryItems(req, res) {
-  // TODO: MAKE THIS DYNAMIC
   const items = await db.getItems();
-  // items.filter((item) => item.category_name === req.params.category);
-  const categoryName = "Evidence & Field Supplies";
   const filteredItems = items.filter(
-    (item) => item.category_name === "Evidence & Field Supplies"
+    (item) => item.category_name === req.params.category
   );
   console.log(filteredItems);
-  res.render("category", { categoryName, items: filteredItems });
+  res.render("category", {
+    categoryName: req.params.category,
+    items: filteredItems,
+  });
 }
 
 module.exports = {
