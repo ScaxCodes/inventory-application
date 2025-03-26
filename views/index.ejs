@@ -17,19 +17,33 @@
     <p><strong>INVENTORY MANAGEMENT APP</strong></p>
 
     <div class="container">
-      <button class="add-btn">
+      <button
+        class="add-btn"
+        onclick="window.location.href='/TODO/add/category'"
+      >
         <span class="material-icons">add</span> Add Category
       </button>
 
       <% if (categories && categories.length > 0) { %> <%
       categories.forEach(category => { %>
-      <div class="category-banner">
+      <div
+        class="category-banner"
+        onclick="window.location.href='/<%= category.name %>'"
+      >
         <span><%= category.name %></span>
         <div class="btn-group">
-          <button class="btn edit-btn" title="Edit Category">
+          <button
+            class="btn edit-btn"
+            title="Edit Category"
+            onclick="event.stopPropagation(); window.location.href='/<%= category.name %>/edit'"
+          >
             <span class="material-icons">edit</span>
           </button>
-          <button class="btn delete-btn" title="Delete Category">
+          <button
+            class="btn delete-btn"
+            title="Delete Category"
+            onclick="event.stopPropagation(); window.location.href='/<%= category.name %>/delete'"
+          >
             <span class="material-icons">delete</span>
           </button>
         </div>

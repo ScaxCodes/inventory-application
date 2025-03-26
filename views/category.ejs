@@ -20,6 +20,20 @@
     <div class="selected-category-banner">
       <h2><%= categoryName %></h2>
     </div>
+
+    <!-- Back and Add Item Buttons -->
+    <div class="category-actions">
+      <button class="back-btn" onclick="window.history.back()">
+        <span class="material-icons">arrow_back</span> Back
+      </button>
+      <button
+        class="add-btn"
+        onclick="window.location.href='/<%= categoryName %>/add-item'"
+      >
+        <span class="material-icons">add</span> Add Item
+      </button>
+    </div>
+
     <!-- Container for Item Cards -->
     <div class="category-page">
       <div class="items-container">
