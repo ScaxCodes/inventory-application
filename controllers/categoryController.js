@@ -13,8 +13,10 @@ async function verifyCategory(req, res, next, category) {
     if (categoryExists) {
       next();
     } else {
-      // TODO: Improved 404 page, should look like the other categories page
-      res.status(404).send("Category not found");
+      res.status(404).render("category", {
+        categoryName: `Category ${req.params.category} not found`,
+        items: [],
+      });
     }
   } catch (error) {
     next(error);
