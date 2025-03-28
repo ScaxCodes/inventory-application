@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Category - <%= categoryName %></title>
+    <!-- Google Material Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>Crime Scene Essentials</h1>
+    <p><strong>INVENTORY MANAGEMENT APP</strong></p>
+
+    <div class="container">
+      <h2>Edit Category Name</h2>
+      <form action="/<%= categoryName %>/edit" method="POST">
+        <div class="form-group">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value="<%= categoryName %>"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="save-btn">Save</button>
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="window.location.href='/'"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

@@ -11,4 +11,9 @@ viewRouter.get("/all-items", itemController.getAllItems);
 viewRouter.param("category", categoryController.verifyCategory);
 viewRouter.get("/:category", itemController.getCategoryItems);
 
+viewRouter.get("/:category/edit", (req, res) => {
+  const categoryName = req.params.category;
+  res.render("editCategory", { categoryName });
+});
+
 module.exports = viewRouter;
