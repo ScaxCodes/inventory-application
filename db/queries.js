@@ -21,6 +21,13 @@ const SQL_CATEGORIES = /* sql */ `
     FROM categories;
 `;
 
+const SQL_CATEGORIES_ID = /* sql */ `
+    SELECT
+      id
+    FROM categories
+    WHERE name = $1;
+`;
+
 async function getItems() {
   const { rows } = await pool.query(SQL_ITEMS);
   return rows;
@@ -31,7 +38,13 @@ async function getCategories() {
   return rows;
 }
 
+async function getCategoryID(category) {
+  const { rows } = await pool.query(SQL_CATEGORIES_ID, [category]);
+  return rows;
+}
+
 module.exports = {
   getItems,
   getCategories,
+  getCategoryID,
 };

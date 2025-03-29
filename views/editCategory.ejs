@@ -19,6 +19,8 @@
     <div class="container">
       <h2>Edit Category Name</h2>
       <form action="/<%= categoryName %>/edit" method="POST">
+        <!-- Hidden field to carry the category's ID -->
+        <input type="hidden" name="id" value="<%= categoryID %>" />
         <div class="form-group">
           <input
             type="text"
