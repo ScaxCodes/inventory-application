@@ -14,10 +14,7 @@ viewRouter.get("/:category", itemController.getCategoryItems);
 
 viewRouter.get("/:category/edit", async (req, res) => {
   const categoryName = req.params.category;
-
-  //BUG: Object is passed instead of id int
   const categoryID = await db.getCategoryID(categoryName);
-
   res.render("editCategory", { categoryName, categoryID });
 });
 

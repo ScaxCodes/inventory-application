@@ -40,7 +40,7 @@ async function getCategories() {
 
 async function getCategoryID(category) {
   const { rows } = await pool.query(SQL_CATEGORIES_ID, [category]);
-  return rows;
+  return rows.length > 0 ? rows[0].id : null;
 }
 
 module.exports = {
