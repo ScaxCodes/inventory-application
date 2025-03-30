@@ -6,13 +6,11 @@ const db = require("../db/queries");
 const modifyRouter = Router();
 
 //TODO: Should this be patch or post?
-//TODO: WIP - NOT TESTED YET
+//TODO: Abstract to controller?
 modifyRouter.post("/:categoryName/edit", async (req, res, next) => {
   const { id, name } = req.body;
   try {
-    // Update the category in the database by id
-    await db.query("UPDATE categories SET name = $1 WHERE id = $2", [name, id]);
-    // Redirect back to the index page (or you could redirect to another page if needed)
+    await db.updateCategoryName(id, name);
     res.redirect("/");
   } catch (err) {
     next(err);

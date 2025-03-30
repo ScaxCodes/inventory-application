@@ -18,7 +18,8 @@ const SQL_CATEGORIES = /* sql */ `
     SELECT
       id,
       name
-    FROM categories;
+    FROM categories
+    ORDER BY id ASC;
 `;
 
 const SQL_CATEGORIES_ID = /* sql */ `
@@ -26,6 +27,10 @@ const SQL_CATEGORIES_ID = /* sql */ `
       id
     FROM categories
     WHERE name = $1;
+`;
+
+const SQL_UPDATE_CATEGORY_NAME = /* sql */ `
+  UPDATE categories SET name = $1 WHERE id = $2;
 `;
 
 async function getItems() {
@@ -43,8 +48,14 @@ async function getCategoryID(category) {
   return rows.length > 0 ? rows[0].id : null;
 }
 
+async function updateCategoryName(id, name) {
+  const { rows } = await pool.query(SQL_UPDATE_CATEGORY_NAME, [name, id]);
+  return rows;
+}
+
 module.exports = {
   getItems,
   getCategories,
   getCategoryID,
+  updateCategoryName,
 };
