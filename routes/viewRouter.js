@@ -8,7 +8,9 @@ const viewRouter = Router();
 viewRouter.get("/", categoryController.getAllCategories);
 viewRouter.get("/all-items", itemController.getAllItems);
 
-//TODO: Can we pass the category ID from here to the edit page?
+viewRouter.get("/addCategory", categoryController.getCategoryAddForm);
+
+//TODO: Can we pass the category ID from here to the edit page? (to reduce db calls)
 viewRouter.param("category", categoryController.verifyCategory);
 viewRouter.get("/:category", itemController.getCategoryItems);
 

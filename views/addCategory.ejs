@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Category - <%= categoryName %></title>
+    <title>Add Category</title>
     <!-- Google Material Icons -->
     <link
       rel="stylesheet"
@@ -17,21 +17,14 @@
     <p><strong>INVENTORY MANAGEMENT APP</strong></p>
 
     <div class="container">
-      <h2>Edit Category</h2>
-      <form action="/<%= categoryName %>/edit" method="POST">
-        <!-- Hidden field to carry the category's ID -->
-        <input type="hidden" name="id" id="id" value="<%= categoryID %>" />
+      <h2>Add Category</h2>
+      <form action="/addCategory" method="POST">
         <div class="form-group">
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value="<%= categoryName %>"
-            required
-          />
+          <!-- TODO: Fixed width for input field -->
+          <input type="text" name="name" id="name" required />
         </div>
         <div class="form-actions">
-          <button type="submit" class="save-btn">Save</button>
+          <button type="submit" class="save-btn">Add</button>
           <button
             type="button"
             class="cancel-btn"

@@ -40,9 +40,14 @@ async function editCategory(req, res, next) {
   }
 }
 
+async function getCategoryAddForm(req, res) {
+  res.render("addCategory");
+}
+
 module.exports = {
   getAllCategories,
   verifyCategory,
   getCategoryEditForm,
   editCategory,
+  getCategoryAddForm,
 };

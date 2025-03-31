@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const addRouter = Router();
 
-addRouter.post("/", (req, res) => {
+addRouter.post("/addCategory", (req, res) => {
   // Add the new item to the database
 });
 
