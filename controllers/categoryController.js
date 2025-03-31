@@ -44,10 +44,21 @@ async function getCategoryAddForm(req, res) {
   res.render("addCategory");
 }
 
+async function addCategory(req, res) {
+  const { name } = req.body;
+  try {
+    await db.addCategory(name);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getAllCategories,
   verifyCategory,
   getCategoryEditForm,
   editCategory,
   getCategoryAddForm,
+  addCategory,
 };

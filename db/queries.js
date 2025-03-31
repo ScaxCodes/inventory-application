@@ -33,6 +33,10 @@ const SQL_UPDATE_CATEGORY_NAME = /* sql */ `
   UPDATE categories SET name = $1 WHERE id = $2;
 `;
 
+const SQL_ADD_CATEGORY = /* sql */ `
+  INSERT INTO categories (name) VALUES ($1);
+`;
+
 async function getItems() {
   const { rows } = await pool.query(SQL_ITEMS);
   return rows;
@@ -42,6 +46,8 @@ async function getCategories() {
   const { rows } = await pool.query(SQL_CATEGORIES);
   return rows;
 }
+
+// TODO: Add more logs similar to the one in getCategories
 
 async function getCategoryID(category) {
   const { rows } = await pool.query(SQL_CATEGORIES_ID, [category]);
@@ -53,9 +59,15 @@ async function updateCategoryName(id, name) {
   return rows;
 }
 
+async function addCategory(name) {
+  const { rows } = await pool.query(SQL_ADD_CATEGORY, [name]);
+  return rows;
+}
+
 module.exports = {
   getItems,
   getCategories,
   getCategoryID,
   updateCategoryName,
+  addCategory,
 };

@@ -2,6 +2,7 @@ const express = require("express");
 const server = express();
 const viewRouter = require("./routes/viewRouter");
 const modifyRouter = require("./routes/modifyRouter");
+const addRouter = require("./routes/addRouter");
 
 const PORT = process.env.PORT || 8000;
 
@@ -14,6 +15,7 @@ server.set("view engine", "ejs");
 
 server.use("/", viewRouter);
 server.use("/", modifyRouter);
+server.use("/", addRouter);
 
 server.listen(PORT, () =>
   console.log(`Express Server running at http://localhost:${PORT}...`)
