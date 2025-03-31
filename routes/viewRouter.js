@@ -12,11 +12,6 @@ viewRouter.get("/all-items", itemController.getAllItems);
 viewRouter.param("category", categoryController.verifyCategory);
 viewRouter.get("/:category", itemController.getCategoryItems);
 
-//TODO: Abstract to controller?
-viewRouter.get("/:category/edit", async (req, res) => {
-  const categoryName = req.params.category;
-  const categoryID = await db.getCategoryID(categoryName);
-  res.render("editCategory", { categoryName, categoryID });
-});
+viewRouter.get("/:category/edit", categoryController.getCategoryEditForm);
 
 module.exports = viewRouter;
