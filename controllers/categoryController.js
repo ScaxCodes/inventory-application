@@ -30,8 +30,19 @@ async function getCategoryEditForm(req, res) {
   res.render("editCategory", { categoryName, categoryID });
 }
 
+async function editCategory(req, res, next) {
+  const { id, name } = req.body;
+  try {
+    await db.updateCategoryName(id, name);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getAllCategories,
   verifyCategory,
   getCategoryEditForm,
+  editCategory,
 };
