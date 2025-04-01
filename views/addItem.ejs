@@ -19,9 +19,10 @@
     <div class="selected-category-banner">
       <h2><%= categoryName %></h2>
     </div>
+    <!-- TODO: Add remaining input fields -->
     <div class="container">
       <h2>Add Item</h2>
-      <form action="/addItem" method="POST">
+      <form action="/<%= categoryName %>/add-item" method="POST">
         <div class="form-group">
           <input type="text" name="name" id="name" required />
         </div>

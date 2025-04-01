@@ -23,8 +23,19 @@ async function getItemAddForm(req, res) {
   res.render("addItem", { categoryName });
 }
 
+async function addItem(req, res) {
+  const { name } = req.body;
+  try {
+    await db.addItem(name);
+    res.redirect(`/${req.params.category}`);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getAllItems,
   getCategoryItems,
   getItemAddForm,
+  addItem,
 };

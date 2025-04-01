@@ -37,6 +37,11 @@ const SQL_ADD_CATEGORY = /* sql */ `
   INSERT INTO categories (name) VALUES ($1);
 `;
 
+const SQL_ADD_ITEM = /* sql */ `
+  INSERT INTO items (name, amount, category_id, manufacturer_id, price, orderablity)
+  VALUES ($1, $2, $3, $4, $5, $6);
+`;
+
 async function getItems() {
   const { rows } = await pool.query(SQL_ITEMS);
   return rows;
@@ -64,10 +69,30 @@ async function addCategory(name) {
   return rows;
 }
 
+async function addItem(
+  name,
+  amount = 1,
+  category_id = 1,
+  manufacturer_id = 1,
+  price = 1.99,
+  orderablity = "Daily"
+) {
+  const { rows } = await pool.query(SQL_ADD_ITEM, [
+    name,
+    amount,
+    category_id,
+    manufacturer_id,
+    price,
+    orderablity,
+  ]);
+  return rows;
+}
+
 module.exports = {
   getItems,
   getCategories,
   getCategoryID,
   updateCategoryName,
   addCategory,
+  addItem,
 };
