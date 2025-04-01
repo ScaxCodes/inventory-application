@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Category</title>
+    <title>Add Item</title>
     <!-- Google Material Icons -->
     <link
       rel="stylesheet"
@@ -15,12 +15,14 @@
   <body>
     <h1>Crime Scene Essentials</h1>
     <p><strong>INVENTORY MANAGEMENT APP</strong></p>
-
+    <!-- Selected Category Banner -->
+    <div class="selected-category-banner">
+      <h2><%= categoryName %></h2>
+    </div>
     <div class="container">
-      <h2>Add Category</h2>
-      <form action="/add-category" method="POST">
+      <h2>Add Item</h2>
+      <form action="/addItem" method="POST">
         <div class="form-group">
-          <!-- TODO: Fixed width for input field -->
           <input type="text" name="name" id="name" required />
         </div>
         <div class="form-actions">
@@ -28,7 +30,7 @@
           <button
             type="button"
             class="cancel-btn"
-            onclick="window.location.href='/'"
+            onclick="window.location.href='/<%= categoryName %>'"
           >
             Cancel
           </button>

@@ -18,7 +18,13 @@ async function getCategoryItems(req, res) {
   });
 }
 
+async function getItemAddForm(req, res) {
+  const categoryName = req.params.category;
+  res.render("addItem", { categoryName });
+}
+
 module.exports = {
   getAllItems,
   getCategoryItems,
+  getItemAddForm,
 };
