@@ -71,11 +71,11 @@ async function addCategory(name) {
 
 async function addItem(
   name,
-  amount = 1,
-  category_id = 1,
-  manufacturer_id = 1,
-  price = 1.99,
-  orderablity = "Daily"
+  amount,
+  category_id,
+  manufacturer_id,
+  price,
+  orderablity
 ) {
   const { rows } = await pool.query(SQL_ADD_ITEM, [
     name,
