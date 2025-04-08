@@ -15,6 +15,7 @@ async function getCategoryItems(req, res) {
   res.render("category", {
     categoryName: req.params.category,
     items: filteredItems,
+    categoryExists: true,
   });
 }
 

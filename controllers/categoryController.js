@@ -6,7 +6,6 @@ async function getAllCategories(req, res) {
   res.render("index", { categories });
 }
 
-// TODO: Remove add item button from category page, when category is not found
 async function verifyCategory(req, res, next, category) {
   try {
     const categories = await db.getCategories();
@@ -17,6 +16,7 @@ async function verifyCategory(req, res, next, category) {
       res.status(404).render("category", {
         categoryName: `Category ${req.params.category} not found`,
         items: [],
+        categoryExists,
       });
     }
   } catch (error) {
