@@ -56,6 +56,7 @@ const SQL_ITEM = /* sql */ `
       items.name,
       items.amount,
       categories.name AS category_name,
+      manufacturers.id AS manufacturer_id,
       manufacturers.name AS manufacturer_name,
       items.price,
       items.orderablity

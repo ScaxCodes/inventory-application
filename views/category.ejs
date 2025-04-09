@@ -47,7 +47,11 @@
           <p><strong>Price:</strong> $<%= item.price %></p>
           <p><strong>Orderablity:</strong> <%= item.orderablity %></p>
           <div class="card-actions">
-            <button class="btn edit-btn" title="Edit Item">
+            <button
+              class="btn edit-btn"
+              title="Edit Item"
+              onclick="window.location.href='/<%= categoryName %>/<%= item.id %>/edit'"
+            >
               <span class="material-icons">edit</span>
             </button>
             <button class="btn delete-btn" title="Delete Item">

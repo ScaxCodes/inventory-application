@@ -43,9 +43,36 @@ async function addItem(req, res) {
   }
 }
 
+async function getItemEditForm(req, res) {
+  const categoryName = req.params.category;
+  const categoryID = await db.getCategoryID(categoryName);
+  const item = await db.getItemByID(req.params.id);
+  res.render("editItem", { categoryName, categoryID, item });
+}
+
+async function editItem(req, res, next) {
+  const { name, amount, manufacturer, price, orderablity, id } = req.body;
+  try {
+    await db.updateItem(
+      name,
+      amount,
+      id,
+      manufacturer,
+      price,
+      orderablity,
+      req.params.id
+    );
+    res.redirect(`/${req.params.categoryName}`);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getAllItems,
   getCategoryItems,
   getItemAddForm,
   addItem,
+  getItemEditForm,
+  editItem,
 };

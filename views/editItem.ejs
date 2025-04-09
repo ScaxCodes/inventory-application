@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Item - <%= item.name %></title>
+    <!-- Google Material Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>Crime Scene Essentials</h1>
+    <p><strong>INVENTORY MANAGEMENT APP</strong></p>
+
+    <div class="container">
+      <h2>Edit Item</h2>
+      <form action="/<%= categoryName %>/<%= item.id %>/edit" method="POST">
+        <!-- Hidden field to carry the category's ID -->
+        <!-- TODO BETTER VARIABLE NAME ID -->
+        <input type="hidden" name="id" id="id" value="<%= categoryID %>" />
+        <div class="form-group">
+          <label for="name">Item Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value="<%= item.name %>"
+            required
+          />
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            name="amount"
+            id="amount"
+            value="<%= item.amount %>"
+            required
+            min="0"
+          />
+          <!-- TODO: Implement restricted dropdown, CamelCase -->
+          <% console.log (item) %>
+          <label for="manufacturer">Manufacturer ID</label>
+          <input
+            type="number"
+            name="manufacturer"
+            id="manufacturer"
+            value="<%= item.manufacturer_id %>"
+            required
+          />
+          <label for="price">Price ($)</label>
+          <input
+            type="number"
+            name="price"
+            id="price"
+            value="<%= item.price %>"
+            step="0.01"
+            required
+            min="0"
+          />
+          <label for="orderablity">Orderablity</label>
+          <input
+            type="text"
+            name="orderablity"
+            id="orderablity"
+            value="<%= item.orderablity %>"
+            required
+          />
+          <div class="form-actions">
+            <button type="submit" class="save-btn">Save</button>
+            <button
+              type="button"
+              class="cancel-btn"
+              onclick="window.location.href='/'"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
