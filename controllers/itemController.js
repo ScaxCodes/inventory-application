@@ -27,7 +27,7 @@ async function getItemAddForm(req, res) {
 async function addItem(req, res) {
   const categoryID = await db.getCategoryID(req.params.category);
 
-  const { name, amount, manufacturer, price, orderability } = req.body;
+  const { name, amount, manufacturer, price, orderablity } = req.body;
   try {
     await db.addItem(
       name,
@@ -35,7 +35,7 @@ async function addItem(req, res) {
       categoryID,
       manufacturer,
       price,
-      orderability
+      orderablity
     );
     res.redirect(`/${req.params.category}`);
   } catch (err) {
