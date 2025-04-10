@@ -62,7 +62,7 @@ async function editItem(req, res, next) {
       orderablity,
       req.params.id
     );
-    res.redirect(`/${req.params.categoryName}`);
+    res.redirect(`/${req.params.category}`);
   } catch (err) {
     next(err);
   }
