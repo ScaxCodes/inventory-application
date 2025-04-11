@@ -14,8 +14,6 @@ modifyRouter.patch("/", (req, res) => {
   // Update the item in the database
 });
 
-modifyRouter.delete("/", (req, res) => {
-  // Delete the item from the database
-});
+modifyRouter.delete("/:category/:id", itemController.deleteItem);
 
 module.exports = modifyRouter;

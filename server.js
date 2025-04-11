@@ -3,11 +3,13 @@ const server = express();
 const viewRouter = require("./routes/viewRouter");
 const modifyRouter = require("./routes/modifyRouter");
 const addRouter = require("./routes/addRouter");
+const methodOverride = require("method-override");
 
 const PORT = process.env.PORT || 8000;
 
 server.use(express.urlencoded({ extended: false }));
 server.use(express.static("public"));
+server.use(methodOverride("_method"));
 
 const path = require("node:path");
 server.set("views", path.join(__dirname, "views"));

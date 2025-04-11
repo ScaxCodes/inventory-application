@@ -68,6 +68,15 @@ async function editItem(req, res, next) {
   }
 }
 
+async function deleteItem(req, res, next) {
+  try {
+    await db.deleteItem(req.params.id);
+    res.redirect(`/${req.params.category}`);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getAllItems,
   getCategoryItems,
@@ -75,4 +84,5 @@ module.exports = {
   addItem,
   getItemEditForm,
   editItem,
+  deleteItem,
 };

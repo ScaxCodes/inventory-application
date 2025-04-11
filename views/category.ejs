@@ -54,9 +54,14 @@
             >
               <span class="material-icons">edit</span>
             </button>
-            <button class="btn delete-btn" title="Delete Item">
-              <span class="material-icons">delete</span>
-            </button>
+            <form
+              action="/<%= categoryName %>/<%= item.id %>?_method=DELETE"
+              method="POST"
+            >
+              <button class="btn delete-btn" title="Delete Item">
+                <span class="material-icons">delete</span>
+              </button>
+            </form>
           </div>
         </div>
         <% }); %> <% } else { %>

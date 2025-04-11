@@ -1,5 +1,6 @@
 const pool = require("./pool");
 
+// TODO: change order of SQL queries and function declarations
 const SQL_ITEMS = /* sql */ `
     SELECT 
       items.id,
@@ -70,6 +71,10 @@ const SQL_UPDATE_ITEM = /* sql */ `
   UPDATE items
   SET name = $1, amount = $2, category_id = $3, manufacturer_id = $4, price = $5, orderablity = $6
   WHERE id = $7;
+`;
+
+const SQL_DELETE_ITEM = /* sql */ `
+  DELETE FROM items WHERE id = $1;
 `;
 
 async function getItems() {
@@ -149,6 +154,11 @@ async function updateItem(
   return rows;
 }
 
+async function deleteItem(id) {
+  const { rows } = await pool.query(SQL_DELETE_ITEM, [id]);
+  return rows;
+}
+
 module.exports = {
   getItems,
   getCategories,
@@ -159,4 +169,5 @@ module.exports = {
   getItemID,
   getItemByID,
   updateItem,
+  deleteItem,
 };
