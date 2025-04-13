@@ -6,7 +6,6 @@ const db = require("../db/queries");
 const modifyRouter = Router();
 
 //TODO: Should this be patch or post?
-//TODO: Sort item by id after edit, not after changedate
 modifyRouter.post("/:category/edit", categoryController.editCategory);
 modifyRouter.post("/:category/:id/edit", itemController.editItem);
 

@@ -12,7 +12,8 @@ const SQL_ITEMS = /* sql */ `
       items.orderablity
     FROM items
     JOIN categories ON items.category_id = categories.id
-    LEFT JOIN manufacturers ON items.manufacturer_id = manufacturers.id;
+    LEFT JOIN manufacturers ON items.manufacturer_id = manufacturers.id
+    ORDER BY id ASC;
 `;
 
 const SQL_CATEGORIES = /* sql */ `
