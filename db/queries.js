@@ -1,6 +1,5 @@
 const pool = require("./pool");
 
-// TODO: change order of SQL queries and function declarations
 const SQL_ITEMS = /* sql */ `
     SELECT 
       items.id,
@@ -16,6 +15,11 @@ const SQL_ITEMS = /* sql */ `
     ORDER BY id ASC;
 `;
 
+async function getItems() {
+  const { rows } = await pool.query(SQL_ITEMS);
+  return rows;
+}
+
 const SQL_CATEGORIES = /* sql */ `
     SELECT
       id,
@@ -24,6 +28,12 @@ const SQL_CATEGORIES = /* sql */ `
     ORDER BY id ASC;
 `;
 
+async function getCategories() {
+  const { rows } = await pool.query(SQL_CATEGORIES);
+  return rows;
+}
+
+// TODO: Add more logs similar to the one in getCategories
 const SQL_CATEGORIES_ID = /* sql */ `
     SELECT
       id
@@ -31,79 +41,33 @@ const SQL_CATEGORIES_ID = /* sql */ `
     WHERE name = $1;
 `;
 
-const SQL_UPDATE_CATEGORY_NAME = /* sql */ `
-  UPDATE categories SET name = $1 WHERE id = $2;
-`;
-
-const SQL_ADD_CATEGORY = /* sql */ `
-  INSERT INTO categories (name) VALUES ($1);
-`;
-
-const SQL_ADD_ITEM = /* sql */ `
-  INSERT INTO items (name, amount, category_id, manufacturer_id, price, orderablity)
-  VALUES ($1, $2, $3, $4, $5, $6);
-`;
-
-// TODO: Select items / categories by id, not by name
-const SQL_ITEM_ID = /* sql */ `
-    SELECT
-      items.id
-    FROM items
-    WHERE name = $1;
-`;
-
-const SQL_ITEM = /* sql */ `
-    SELECT
-      items.id,
-      items.name,
-      items.amount,
-      categories.name AS category_name,
-      manufacturers.id AS manufacturer_id,
-      manufacturers.name AS manufacturer_name,
-      items.price,
-      items.orderablity
-    FROM items
-    JOIN categories ON items.category_id = categories.id
-    LEFT JOIN manufacturers ON items.manufacturer_id = manufacturers.id
-    WHERE items.id = $1;
-`;
-
-const SQL_UPDATE_ITEM = /* sql */ `
-  UPDATE items
-  SET name = $1, amount = $2, category_id = $3, manufacturer_id = $4, price = $5, orderablity = $6
-  WHERE id = $7;
-`;
-
-const SQL_DELETE_ITEM = /* sql */ `
-  DELETE FROM items WHERE id = $1;
-`;
-
-async function getItems() {
-  const { rows } = await pool.query(SQL_ITEMS);
-  return rows;
-}
-
-async function getCategories() {
-  const { rows } = await pool.query(SQL_CATEGORIES);
-  return rows;
-}
-
-// TODO: Add more logs similar to the one in getCategories
-
 async function getCategoryID(category) {
   const { rows } = await pool.query(SQL_CATEGORIES_ID, [category]);
   return rows.length > 0 ? rows[0].id : null;
 }
+
+const SQL_UPDATE_CATEGORY_NAME = /* sql */ `
+  UPDATE categories SET name = $1 WHERE id = $2;
+`;
 
 async function updateCategoryName(id, name) {
   const { rows } = await pool.query(SQL_UPDATE_CATEGORY_NAME, [name, id]);
   return rows;
 }
 
+const SQL_ADD_CATEGORY = /* sql */ `
+  INSERT INTO categories (name) VALUES ($1);
+`;
+
 async function addCategory(name) {
   const { rows } = await pool.query(SQL_ADD_CATEGORY, [name]);
   return rows;
 }
+
+const SQL_ADD_ITEM = /* sql */ `
+  INSERT INTO items (name, amount, category_id, manufacturer_id, price, orderablity)
+  VALUES ($1, $2, $3, $4, $5, $6);
+`;
 
 async function addItem(
   name,
@@ -124,15 +88,45 @@ async function addItem(
   return rows;
 }
 
+// TODO: Select items / categories by id, not by name
+const SQL_ITEM_ID = /* sql */ `
+    SELECT
+      items.id
+    FROM items
+    WHERE name = $1;
+`;
+
 async function getItemID(name) {
   const { rows } = await pool.query(SQL_ITEM_ID, [name]);
   return rows.length > 0 ? rows[0].id : null;
 }
 
+const SQL_ITEM = /* sql */ `
+    SELECT
+      items.id,
+      items.name,
+      items.amount,
+      categories.name AS category_name,
+      manufacturers.id AS manufacturer_id,
+      manufacturers.name AS manufacturer_name,
+      items.price,
+      items.orderablity
+    FROM items
+    JOIN categories ON items.category_id = categories.id
+    LEFT JOIN manufacturers ON items.manufacturer_id = manufacturers.id
+    WHERE items.id = $1;
+`;
+
 async function getItemByID(id) {
   const { rows } = await pool.query(SQL_ITEM, [id]);
   return rows.length > 0 ? rows[0] : null;
 }
+
+const SQL_UPDATE_ITEM = /* sql */ `
+  UPDATE items
+  SET name = $1, amount = $2, category_id = $3, manufacturer_id = $4, price = $5, orderablity = $6
+  WHERE id = $7;
+`;
 
 async function updateItem(
   name,
@@ -154,6 +148,10 @@ async function updateItem(
   ]);
   return rows;
 }
+
+const SQL_DELETE_ITEM = /* sql */ `
+  DELETE FROM items WHERE id = $1;
+`;
 
 async function deleteItem(id) {
   const { rows } = await pool.query(SQL_DELETE_ITEM, [id]);
