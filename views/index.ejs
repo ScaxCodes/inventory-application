@@ -36,13 +36,11 @@
           >
             <span class="material-icons">edit</span>
           </button>
-          <button
-            class="btn delete-btn"
-            title="Delete Category"
-            onclick="event.stopPropagation(); window.location.href='/<%= category.name %>/delete'"
-          >
-            <span class="material-icons">delete</span>
-          </button>
+          <form action="/<%= category.name %>?_method=DELETE" method="POST">
+            <button class="btn delete-btn" title="Delete Category">
+              <span class="material-icons">delete</span>
+            </button>
+          </form>
         </div>
       </div>
       <% }); %> <% } else { %>

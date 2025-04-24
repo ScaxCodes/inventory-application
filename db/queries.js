@@ -158,6 +158,15 @@ async function deleteItem(id) {
   return rows;
 }
 
+const SQL_DELETE_CATEGORY = /* sql */ `
+  DELETE FROM categories WHERE id = $1;
+`;
+
+async function deleteCategory(id) {
+  const { rows } = await pool.query(SQL_DELETE_CATEGORY, [id]);
+  return rows;
+}
+
 module.exports = {
   getItems,
   getCategories,
@@ -169,4 +178,5 @@ module.exports = {
   getItemByID,
   updateItem,
   deleteItem,
+  deleteCategory,
 };

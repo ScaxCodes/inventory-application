@@ -14,5 +14,6 @@ modifyRouter.patch("/", (req, res) => {
 });
 
 modifyRouter.delete("/:category/:id", itemController.deleteItem);
+modifyRouter.delete("/:category/", categoryController.deleteCategory);
 
 module.exports = modifyRouter;

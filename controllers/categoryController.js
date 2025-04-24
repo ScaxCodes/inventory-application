@@ -54,6 +54,32 @@ async function addCategory(req, res) {
   }
 }
 
+async function deleteCategory(req, res, next) {
+  const categoryID = await db.getCategoryID(req.params.category);
+  const items = await db.getItems();
+  const filteredItems = items.filter(
+    (item) => item.category_name === req.params.category
+  );
+  const categoryHasItems = filteredItems.length > 0;
+
+  // TODO: Implement specific error page
+  if (categoryHasItems) {
+    return res.status(409).render("category", {
+      categoryName: `Category ${req.params.category} contains items, delete them first`,
+      items: [],
+      // Set boolean to false, to hide add item button
+      categoryExists: false,
+    });
+  }
+
+  try {
+    await db.deleteCategory(categoryID);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getAllCategories,
   verifyCategory,
@@ -61,4 +87,5 @@ module.exports = {
   editCategory,
   getCategoryAddForm,
   addCategory,
+  deleteCategory,
 };
