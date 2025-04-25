@@ -16,6 +16,8 @@ viewRouter.get("/:category", itemController.getCategoryItems);
 
 viewRouter.get("/:category/edit", categoryController.getCategoryEditForm);
 viewRouter.get("/:category/add-item", itemController.getItemAddForm);
+
+viewRouter.param("id", itemController.verifyItem);
 viewRouter.get("/:category/:id/edit", itemController.getItemEditForm);
 
 module.exports = viewRouter;

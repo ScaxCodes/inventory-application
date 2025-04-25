@@ -43,6 +43,27 @@ async function addItem(req, res) {
   }
 }
 
+async function verifyItem(req, res, next, id) {
+  if (isNaN(id)) {
+    return res.status(400).render("error", {
+      error: `Invalid ID format: ${id}`,
+    });
+  }
+  try {
+    const item = await db.getItemByID(id);
+    console.log(item);
+    if (item) {
+      next();
+    } else {
+      res.status(404).render("error", {
+        error: `Item with ID ${req.params.id} not found`,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function getItemEditForm(req, res) {
   const categoryName = req.params.category;
   const categoryID = await db.getCategoryID(categoryName);
@@ -82,6 +103,7 @@ module.exports = {
   getCategoryItems,
   getItemAddForm,
   addItem,
+  verifyItem,
   getItemEditForm,
   editItem,
   deleteItem,
