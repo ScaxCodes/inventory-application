@@ -180,6 +180,10 @@ p {
   color: #dc3545;
 }
 
+.error {
+  background-color: #dc3545;
+}
+
 /* Edit Category View */
 .form-group {
   width: 100%;

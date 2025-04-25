@@ -13,10 +13,8 @@ async function verifyCategory(req, res, next, category) {
     if (categoryExists) {
       next();
     } else {
-      res.status(404).render("category", {
-        categoryName: `Category ${req.params.category} not found`,
-        items: [],
-        categoryExists,
+      res.status(404).render("error", {
+        error: `Category ${req.params.category} not found`,
       });
     }
   } catch (error) {
@@ -62,13 +60,9 @@ async function deleteCategory(req, res, next) {
   );
   const categoryHasItems = filteredItems.length > 0;
 
-  // TODO: Implement specific error page
   if (categoryHasItems) {
-    return res.status(409).render("category", {
-      categoryName: `Category ${req.params.category} contains items, delete them first`,
-      items: [],
-      // Set boolean to false, to hide add item button
-      categoryExists: false,
+    return res.status(409).render("error", {
+      error: `Cannot delete category ${req.params.category} because it has items. Delete them first.`,
     });
   }
 
