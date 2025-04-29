@@ -72,12 +72,13 @@ async function getItemEditForm(req, res) {
 }
 
 async function editItem(req, res, next) {
-  const { name, amount, manufacturer, price, orderablity, id } = req.body;
+  const { name, amount, manufacturer, price, orderablity, categoryID } =
+    req.body;
   try {
     await db.updateItem(
       name,
       amount,
-      id,
+      categoryID,
       manufacturer,
       price,
       orderablity,

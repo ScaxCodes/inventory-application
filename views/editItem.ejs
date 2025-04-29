@@ -20,8 +20,12 @@
       <h2>Edit Item</h2>
       <form action="/<%= categoryName %>/<%= item.id %>/edit" method="POST">
         <!-- Hidden field to carry the category's ID -->
-        <!-- TODO BETTER VARIABLE NAME ID -->
-        <input type="hidden" name="id" id="id" value="<%= categoryID %>" />
+        <input
+          type="hidden"
+          name="categoryID"
+          id="categoryID"
+          value="<%= categoryID %>"
+        />
         <div class="form-group">
           <label for="name">Item Name</label>
           <input
