@@ -51,12 +51,12 @@ async function verifyItem(req, res, next, id) {
   try {
     const item = await db.getItemByID(id);
     if (item) {
-      next();
-    } else {
-      res.status(404).render("error", {
-        error: `Item with ID ${req.params.id} not found`,
-      });
+      req.item = item;
+      return next();
     }
+    res.status(404).render("error", {
+      error: `Item with ID ${req.params.id} not found`,
+    });
   } catch (error) {
     next(error);
   }
@@ -65,7 +65,7 @@ async function verifyItem(req, res, next, id) {
 async function getItemEditForm(req, res) {
   const categoryName = req.params.category;
   const categoryID = req.categoryID;
-  const item = await db.getItemByID(req.params.id);
+  const item = req.item;
   res.render("editItem", { categoryName, categoryID, item });
 }
 
