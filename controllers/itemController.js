@@ -2,7 +2,6 @@ const db = require("../db/queries");
 
 async function getAllItems(req, res) {
   const items = await db.getItems();
-  console.log(items);
   res.json(items);
 }
 
@@ -51,7 +50,6 @@ async function verifyItem(req, res, next, id) {
   }
   try {
     const item = await db.getItemByID(id);
-    console.log(item);
     if (item) {
       next();
     } else {

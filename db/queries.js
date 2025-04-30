@@ -33,7 +33,6 @@ async function getCategories() {
   return rows;
 }
 
-// TODO: Add more logs similar to the one in getCategories
 const SQL_CATEGORIES_ID = /* sql */ `
     SELECT
       id
