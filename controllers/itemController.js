@@ -64,7 +64,7 @@ async function verifyItem(req, res, next, id) {
 
 async function getItemEditForm(req, res) {
   const categoryName = req.params.category;
-  const categoryID = await db.getCategoryID(categoryName);
+  const categoryID = req.categoryID;
   const item = await db.getItemByID(req.params.id);
   res.render("editItem", { categoryName, categoryID, item });
 }

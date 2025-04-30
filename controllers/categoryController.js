@@ -24,7 +24,8 @@ async function verifyCategory(req, res, next, category) {
 
 async function getCategoryEditForm(req, res) {
   const categoryName = req.params.category;
-  const categoryID = await db.getCategoryID(categoryName);
+  const categoryID = req.categoryID;
+  // const categoryID = await db.getCategoryID(categoryName);
   res.render("editCategory", { categoryName, categoryID });
 }
 
