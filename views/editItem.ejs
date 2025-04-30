@@ -18,7 +18,10 @@
 
     <div class="container">
       <h2>Edit Item</h2>
-      <form action="/<%= categoryName %>/<%= item.id %>/edit" method="POST">
+      <form
+        action="/<%= categoryName %>/<%= item.id %>/edit?_method=PATCH"
+        method="POST"
+      >
         <!-- Hidden field to carry the category's ID -->
         <input
           type="hidden"

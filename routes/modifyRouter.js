@@ -6,12 +6,8 @@ const db = require("../db/queries");
 const modifyRouter = Router();
 
 //TODO: Should this be patch or post?
-modifyRouter.post("/:category/edit", categoryController.editCategory);
-modifyRouter.post("/:category/:id/edit", itemController.editItem);
-
-modifyRouter.patch("/", (req, res) => {
-  // Update the item in the database
-});
+modifyRouter.patch("/:category/edit", categoryController.editCategory);
+modifyRouter.patch("/:category/:id/edit", itemController.editItem);
 
 modifyRouter.delete("/:category/:id", itemController.deleteItem);
 modifyRouter.delete("/:category/", categoryController.deleteCategory);
