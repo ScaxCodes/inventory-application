@@ -86,7 +86,7 @@ CREATE TABLE items (
     category_id INTEGER NOT NULL,
     manufacturer_id INTEGER,
     price NUMERIC(10,2) NOT NULL DEFAULT 0.00,
-    orderablity VARCHAR(50)
+    orderability VARCHAR(50)
 );
 
 INSERT INTO categories (name) VALUES
@@ -102,7 +102,7 @@ INSERT INTO manufacturers (name, country) VALUES
 ('Investigators’ Choice', 'France'),
 ('CopLife Essentials', 'USA');
 
-INSERT INTO items (name, amount, category_id, manufacturer_id, price, orderablity) VALUES
+INSERT INTO items (name, amount, category_id, manufacturer_id, price, orderability) VALUES
 ('Evidence Bags (paper)', 500, 1, 1, 19.99, 'Unlimited'),
 ('Tamper-Proof Seals', 200, 1, 2, 24.99, 'Once a week'),
 ('Crime Scene Tape', 50, 1, 3, 14.99, 'Unlimited'),

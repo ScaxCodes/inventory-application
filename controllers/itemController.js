@@ -26,7 +26,7 @@ async function getItemAddForm(req, res) {
 async function addItem(req, res) {
   const categoryID = await db.getCategoryID(req.params.category);
 
-  const { name, amount, manufacturer, price, orderablity } = req.body;
+  const { name, amount, manufacturer, price, orderability } = req.body;
   try {
     await db.addItem(
       name,
@@ -34,7 +34,7 @@ async function addItem(req, res) {
       categoryID,
       manufacturer,
       price,
-      orderablity
+      orderability
     );
     res.redirect(`/${req.params.category}`);
   } catch (err) {
@@ -70,7 +70,7 @@ async function getItemEditForm(req, res) {
 }
 
 async function editItem(req, res, next) {
-  const { name, amount, manufacturer, price, orderablity, categoryID } =
+  const { name, amount, manufacturer, price, orderability, categoryID } =
     req.body;
   try {
     await db.updateItem(
@@ -79,7 +79,7 @@ async function editItem(req, res, next) {
       categoryID,
       manufacturer,
       price,
-      orderablity,
+      orderability,
       req.params.id
     );
     res.redirect(`/${req.params.category}`);

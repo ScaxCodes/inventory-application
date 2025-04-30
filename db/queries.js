@@ -8,7 +8,7 @@ const SQL_ITEMS = /* sql */ `
       categories.name AS category_name,
       manufacturers.name AS manufacturer_name,
       items.price,
-      items.orderablity
+      items.orderability
     FROM items
     JOIN categories ON items.category_id = categories.id
     LEFT JOIN manufacturers ON items.manufacturer_id = manufacturers.id
@@ -64,7 +64,7 @@ async function addCategory(name) {
 }
 
 const SQL_ADD_ITEM = /* sql */ `
-  INSERT INTO items (name, amount, category_id, manufacturer_id, price, orderablity)
+  INSERT INTO items (name, amount, category_id, manufacturer_id, price, orderability)
   VALUES ($1, $2, $3, $4, $5, $6);
 `;
 
@@ -74,7 +74,7 @@ async function addItem(
   category_id,
   manufacturer_id,
   price,
-  orderablity
+  orderability
 ) {
   const { rows } = await pool.query(SQL_ADD_ITEM, [
     name,
@@ -82,7 +82,7 @@ async function addItem(
     category_id,
     manufacturer_id,
     price,
-    orderablity,
+    orderability,
   ]);
   return rows;
 }
@@ -109,7 +109,7 @@ const SQL_ITEM = /* sql */ `
       manufacturers.id AS manufacturer_id,
       manufacturers.name AS manufacturer_name,
       items.price,
-      items.orderablity
+      items.orderability
     FROM items
     JOIN categories ON items.category_id = categories.id
     LEFT JOIN manufacturers ON items.manufacturer_id = manufacturers.id
@@ -123,7 +123,7 @@ async function getItemByID(id) {
 
 const SQL_UPDATE_ITEM = /* sql */ `
   UPDATE items
-  SET name = $1, amount = $2, category_id = $3, manufacturer_id = $4, price = $5, orderablity = $6
+  SET name = $1, amount = $2, category_id = $3, manufacturer_id = $4, price = $5, orderability = $6
   WHERE id = $7;
 `;
 
@@ -133,7 +133,7 @@ async function updateItem(
   category_id,
   manufacturer_id,
   price,
-  orderablity,
+  orderability,
   id
 ) {
   const { rows } = await pool.query(SQL_UPDATE_ITEM, [
@@ -142,7 +142,7 @@ async function updateItem(
     category_id,
     manufacturer_id,
     price,
-    orderablity,
+    orderability,
     id,
   ]);
   return rows;
