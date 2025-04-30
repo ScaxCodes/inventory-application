@@ -9,14 +9,14 @@ async function getAllCategories(req, res) {
 async function verifyCategory(req, res, next, category) {
   try {
     const categories = await db.getCategories();
-    const categoryExists = categories.some((cat) => cat.name === category);
-    if (categoryExists) {
-      next();
-    } else {
-      res.status(404).render("error", {
-        error: `Category ${req.params.category} not found`,
-      });
+    const foundCategory = categories.find((cat) => cat.name === category);
+    if (foundCategory) {
+      req.categoryID = foundCategory.id;
+      return next();
     }
+    res.status(404).render("error", {
+      error: `Category ${req.params.category} not found`,
+    });
   } catch (error) {
     next(error);
   }
