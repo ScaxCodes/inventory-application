@@ -11,6 +11,7 @@ Inventory Application is a simple inventory management system built to train my 
 - [Database Setup](#database-setup)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
+- [Reflection / Room for Improvement](#reflection--room-for-improvement)
 - [License](#license)
 
 ## Features
@@ -146,6 +147,10 @@ The server will start on [http://localhost:8000](http://localhost:8000). Open th
 - **DELETE /:category/** – Delete a category.
 
 _Note: HTML forms use method override to simulate PATCH/DELETE._
+
+## Reflection / Room for Improvement
+
+I decided to stop improving this project and continue learning more backend topics instead; the next stop will be authentication. The app could be improved in several ways. For a better user experience, a loading spinner during database calls would be important. Additionally, instead of manually entering IDs when editing items, it would be much nicer to select category names from a dropdown menu. Also, it was a really bad idea to fetch categories by their name rather than by their ID. I will not fall into this trap in my future projects.
 
 ## License
 
