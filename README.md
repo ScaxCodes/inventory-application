@@ -2,6 +2,8 @@
 
 Inventory Application is a simple inventory management system built to train my Express.js and PostgreSQL skills. It allows the user to manage categories and items, including adding, editing, and deleting them. The app uses EJS as the view engine and follows a RESTful routing design.
 
+**Live Demo:** [inventory-application-production-f2ac.up.railway.app](https://inventory-application-production-f2ac.up.railway.app/)
+
 ## Table of Contents
 
 - [Features](#features)
